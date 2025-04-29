@@ -3,17 +3,18 @@ import Footer from "../../components/footer/Footer"
 import Cadastro from "../../components/cadastro/Cadastro"
 import Lista from "../../components/lista/Lista"
 
-// import { Fragment } from "react";
-
 const CadastroFilme = () => {
-    return(
+    return (
         <>
-            <Header/>
+            <Header />
             <main>
-                <Cadastro/>
-                <Lista/>
+                <Cadastro
+                    tituloCadastro="Cadastro de Filme"
+                    placeholder="filme"
+                />
+                <Lista listaDeCadastro="Lista de Filmes" />
             </main>
-            <Footer/>
+            <Footer />
         </>
     )
 }
