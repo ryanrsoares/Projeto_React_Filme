@@ -31,12 +31,16 @@ const Lista = (props) => {
                             //Vamos mapear os itens da lista
                             props.lista.map((item) => (
                                 //dando um identificador para cada linha da lista
-                                <tr className="item_lista" Key={item.IdGenero}>
+                                <tr className="item_lista" Key={item.idGenero}>
                                     <td data-cell="Nome">
                                         {item.nome}
                                     </td>
                                     <td data-cell="Gênero" style={{display:props.visibilidade}}>Ação</td>
-                                    <td data-cell="Editar"><img src={Editar} alt="Caneta"/></td>
+                                    <td data-cell="Editar">
+                                        <button onClick={()=> {props.funcEditar(item)}}>
+                                        <img src={Editar} alt="Caneta"/>    
+                                        </button>
+                                    </td>
                                     <td data-cell="Excluir"><img src={Excluir} alt="Lixeira" onClick={() => props.deletar(item.idGenero)} style={{curosr:"pointer"}}/></td>
                                 </tr>
                             ))

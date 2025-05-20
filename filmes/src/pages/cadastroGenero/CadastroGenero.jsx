@@ -98,7 +98,7 @@ const CadastroGenero = () => {
     //     }
     // }
 
-    async function deletaGenero(idGenero) {
+    async function deletaGenero(id) {
         
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -116,18 +116,18 @@ const CadastroGenero = () => {
             cancelButtonText: "Não, cancele!",
             reverseButtons: true
         }).then(async(result) => {
+            try {
+                //conectar a api
+                //solicitar a exclusao do genero
+                //interpolacao X concatenacao
+                //`genero/${idGenero}`
+                await api.delete(`genero/${id}`)
+                listarGenero();
+            }
+            catch (error) {
+                console.log(error)
+            }
             if (result.isConfirmed) {
-                try {
-                    //conectar a api
-                    //solicitar a exclusao do genero
-                    //interpolacao X concatenacao
-                    //`genero/${idGenero}`
-                    await api.delete(`genero/${idGenero}`)
-                    listarGenero();
-                }
-                catch (error) {
-                    console.log(error)
-                }
                 swalWithBootstrapButtons.fire({
                     title: "Deletado!",
                     text: "Seu genêro foram deletados.",
@@ -145,6 +145,33 @@ const CadastroGenero = () => {
             }
         });
     }
+
+    async function editarGenero (genero){
+        // console.log(genero);
+        
+    const { value: novoGenero } = await Swal.fire({
+        title: "Modifique seu gênero",
+        input: "text",
+        inputLabel: "Novo genero",
+        inputValue: genero.nome,
+        showCancelButton: true,
+        inputValidator: (value) => {
+            if (!value) {
+                return "O campo não pode estar vazio!";
+            }
+        }
+    });
+    if (novoGenero) {
+        try {
+                console.log(genero.nome);
+                console.log(novoGenero);
+                api.put(`genero/${genero.idGenero}`, {nome: novoGenero});
+                Swal.fire(`O gênero modiicado  ${novoGenero}`);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }
     
     //funcao de excluir o genero ;)
     
@@ -158,7 +185,7 @@ const CadastroGenero = () => {
     // Assim que a página renderizar, o método listarGenero() será chamado
     useEffect(() => {
         listarGenero();
-    }, [])
+    }, [listaGenero])
     
 
     return (
@@ -184,6 +211,7 @@ const CadastroGenero = () => {
                     //atribuir para lista, o meu estado atual:
                     lista = {listaGenero}
                     deletar={deletaGenero}
+                    funcEditar={editarGenero}
 
                     
                 />
