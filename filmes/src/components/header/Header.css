@@ -1,8 +1,13 @@
+/* seletor:
+. -> classe
+# -> id
+ */
 header{
     background-color: #CC3F55;
-    height: 75PX;
 
-    /* borda */
+    height: 75px;
+
+    /* Borda: */
     box-shadow: 1px 4px 4px 0px #00000055;
     position: relative;
 }
@@ -11,21 +16,24 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    width: 100%;
 }
 
 .cabecalho img{
-    height: 65px;
+    height: 60px;
 }
 
 .link_header{
-    margin-right: 40px;
-    color: aliceblue;
+    margin-left: 45px;
+
+    color: white;
+
     text-decoration: none;
-    font-weight: bolder;
 }
 
 @media screen and (max-width: 768px){
-    .cabecalho{
+    .cabecalho img{
         height: 35px;
     }
 
@@ -33,4 +41,3 @@ header{
         margin-left: 10px;
     }
 }
-
